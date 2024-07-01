@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Логин администратора</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем, зарегистрирован ли уже пользователь
+            const registeredUsername = localStorage.getItem('adminUsername');
+            if (registeredUsername) {
+                document.getElementById('register-form').style.display = 'none'; // Скрываем форму регистрации
+            }
+
+            // Добавляем обработчики событий на формы
+            document.getElementById('register-form').addEventListener('submit', handleRegister);
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+        });
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            // Проверяем, зарегистрирован ли уже пользователь
+            const registeredUsername = localStorage.getItem('adminUsername');
+            if (registeredUsername) {
+                alert('Пользователь уже зарегистрирован.');
+                return;
+            }
+
+            // Регистрируем пользователя
+            localStorage.setItem('adminUsername', username);
+            localStorage.setItem('adminPassword', password);
+            alert('Регистрация успешна! Теперь вы можете войти.');
+            document.getElementById('register-form').style.display = 'none'; // Скрываем форму регистрации после успешной регистрации
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const storedUsername = localStorage.getItem('adminUsername');
+            const storedPassword = localStorage.getItem('adminPassword');
+
+            if (username === storedUsername && password === storedPassword) {
+                localStorage.setItem('loggedin', 'true');
+                alert('Вход успешен!');
+                window.location.href = 'index2.html';
+            } else {
+                alert('Неправильное имя пользователя или пароль.');
+            }
+        }
+    </script>
+</head>
+<body class="body-3">
+    <div class="login-container">
+        <h2>Вход администратора</h2>
+        <form id="register-form">
+            <label for="register-username">Имя пользователя:</label>
+            <input type="text" id="register-username" name="username" required>
+            <label for="register-password">Пароль:</label>
+            <input type="password" id="register-password" name="password" required>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <form id="login-form">
+            <label for="login-username">Имя пользователя:</label>
+            <input type="text" id="login-username" name="username" required>
+            <label for="login-password">Пароль:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+</body>
+</html>
