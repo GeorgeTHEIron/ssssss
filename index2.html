@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Центр развития регионального движения Абилимпикс</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/0540f2.png"/>
+</head>
+<style>
+    .body2 {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('../images/Frame\ 15.png');
+    background-attachment: fixed;
+    background-size: cover; /* масштабирует изображение, чтобы оно покрывало весь фон */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wrapper2 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.header2 {
+    background: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* News section */
+#vol {
+    margin: 20px 0;
+}
+
+.news-slider {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+
+.slider-container {
+    display: flex;
+    overflow: hidden;
+}
+
+.slider-item {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.news-content h3 {
+    color: #0056b3;
+}
+
+.news-item h3 {
+    margin-top: 0;
+}
+
+.news-item a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
+}
+
+/* Slider buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 70%;
+    width: auto;
+    padding: 116px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.next {
+    margin-left: 1111px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Admin buttons */
+.admin-buttons {
+    margin-top: 20px;
+}
+
+.admin-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.admin-buttons button:hover {
+    background-color: #003d82;
+}
+
+/* Стили кнопок "Редактировать" и "Удалить" */
+.admin-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.admin-button.edit {
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white;
+}
+
+.admin-button.edit:hover {
+    background-color: #45a049; /* Темно-зеленый цвет при наведении */
+}
+
+.admin-button.delete {
+    background-color: #f44336; /* Красный цвет */
+    color: white;
+}
+
+.admin-button.delete:hover {
+    background-color: #d32f2f; /* Темно-красный цвет при наведении */
+}
+
+
+/* Styles for Add/Edit News Form */
+.news-form {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.news-form h3 {
+    margin-top: 0;
+}
+
+.news-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.news-form input[type="text"],
+.news-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.news-form input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.news-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.news-form button:hover {
+    background-color: #003d82;
+}
+
+.news-form button[type="button"] {
+    background-color: #ddd;
+    color: #333;
+}
+
+.news-form button[type="button"]:hover {
+    background-color: #bbb;
+}
+
+.news-image img,
+.news-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    display: block;
+}
+
+
+</style>
+<body class="body2">
+    <div class="wrapper2">
+        <header class="header2">
+            <div class="head">
+                <div class="line">
+                    <img src="images/0540f2_logo.png" alt="">
+                    <div class="line-v"></div>
+                </div>
+                <p>Национальный чемпионат по профессиональному мастерству среди инвалидов и лиц с ограниченными возможностями здоровья "Абилимпикс"</p>
+            </div>
+            <hr>
+            <nav>
+                <ul class="topmenu">
+                    <li class="t-1"><a href="index.html" class="submenu-link">Абилимпикс 2024 ⮟</a>
+                        <ul class="submenu">
+                            <li><a target="_blank" href="doc/Аналитическая справка по РЧ 2022.pdf">2022</a></li>
+                            <li><a target="_blank" href="doc/Пост-релиз VI регионального чемпионата Абилимпикс.pdf">2021</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index2.html">Новости</a></li>
+                    <li><a href="index 3.html">Истории успехов</a></li>
+                    <li><a href="index 4.html">"Фестиваль возможностей"</a></li>
+                    <li><a href="index 5.html">Контакты</a></li>
+                    <li><a href="index 6.html">Отчеты чемпионата</a>
+                    <li><a href="index14.html">Логин</a>
+                </ul>
+            </nav>
+        </header>
+       
+        <section id="vol">
+            <h2 style=" color: black; font-size: 36px;">Новости</h2>
+            <!-- News Slider -->
+            <div id="newsContainer">
+                <div class="news-slider">
+                    <div class="slider-container">
+                        <!-- Slider items will be dynamically added here -->
+                    </div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+            </div>
+        </section>
+
+        <section id="admin-section">
+            <h2 style=" color: black; font-size: 36px;" id="admin-heading">Администрирование новостей</h2>
+            <div class="admin-buttons" id="adminButtons" style="display: none;">
+                <button onclick="showAddForm()">Добавить новость</button>
+            </div>
+            <div id="news-form-container" class="news-form">
+                <h3 id="form-title">Добавить новость</h3>
+                <form id="newsForm" onsubmit="handleFormSubmit(event)">
+                    <input type="hidden" id="news-index" name="index">
+                    <label for="news-title">Заголовок:</label>
+                    <input type="text" id="news-title" name="title" required>
+                    <label for="news-image">Изображение:</label>
+                    <input type="file" id="news-image" name="image" accept="image/*">
+                    <label for="news-content">Контент:</label>
+                    <textarea id="news-content" name="content" rows="5" required></textarea>
+                    <button type="submit">Сохранить</button>
+                    <button type="button" onclick="hideForm()">Отменить</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем статус входа в систему
+            checkLoginStatus();
+
+            // Инициализируем слайдер новостей
+            initializeSlider();
+
+            // Загружаем сохраненные новости из localStorage
+            loadNewsFromStorage();
+        });
+
+        // Массив данных новостей
+        let newsData = [];
+
+        // Индекс слайда
+        let slideIndex = 1;
+
+        // DOM элементы
+        const sliderContainer = document.querySelector('.slider-container');
+        const adminButtons = document.getElementById('adminButtons');
+        const adminSection = document.getElementById('admin-section');
+        const newsFormContainer = document.getElementById('news-form-container');
+        const newsForm = document.getElementById('newsForm');
+
+        // Инициализация слайдера новостей
+        function initializeSlider() {
+            showSlides();
+        }
+
+        // Функция отображения слайдов новостей
+        function showSlides() {
+            sliderContainer.innerHTML = '';
+            for (let i = 0; i < newsData.length; i++) {
+                const news = newsData[i];
+                const slide = document.createElement('div');
+                slide.classList.add('slider-item');
+                slide.innerHTML = `
+                    <div class="news-item">
+                        <div class="news-image">
+                            <img src="${news.image}" alt="${news.title}">
+                        </div>
+                        <div class="news-content">
+                            <h3>${news.title}</h3>
+                            <p>${news.content}</p>
+                            ${isLoggedIn() ? `
+                                <button onclick="showEditForm(${i})" class="admin-button edit">Редактировать</button>
+                                <button onclick="deleteNews(${i})" class="admin-button delete">Удалить</button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                sliderContainer.appendChild(slide);
+            }
+            showSlide(slideIndex);
+        }
+
+        // Функция отображения конкретного слайда
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slider-item');
+            if (slides.length === 0) return;
+
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slides[slideIndex - 1].style.display = 'block';
+        }
+
+        // Функция перемещения к предыдущему или следующему слайду
+        function plusSlides(n) {
+            showSlide(slideIndex += n);
+        }
+
+        // Функция проверки статуса входа в систему и отображения/скрытия административных элементов
+        function checkLoginStatus() {
+            const loggedin = isLoggedIn();
+            if (loggedin) {
+                adminButtons.style.display = 'block';
+                adminSection.style.display = 'block'; // Показываем секцию администрирования
+                newsFormContainer.style.display = 'none'; // Скрываем форму новости по умолчанию
+            } else {
+                adminButtons.style.display = 'none';
+                adminSection.style.display = 'none'; // Скрываем секцию администрирования
+            }
+        }
+
+        // Функция, проверяющая вошел ли пользователь в систему
+        function isLoggedIn() {
+            // Здесь вы можете реализовать логику проверки входа пользователя, например, через localStorage или сессию
+            // Возвращаем true, если пользователь вошел, и false в противном случае
+            // Например:
+            return localStorage.getItem('loggedin') === 'true';
+        }
+
+        // Функция отображения формы добавления новости
+        function showAddForm() {
+            document.getElementById('form-title').textContent = 'Добавить новость';
+            newsForm.reset(); // Сбрасываем форму
+            document.getElementById('news-index').value = ''; // Очищаем индекс новости
+            newsFormContainer.style.display = 'block';
+        }
+
+        // Функция скрытия формы добавления/редактирования новости
+        function hideForm() {
+            newsFormContainer.style.display = 'none';
+        }
+
+        // Функция обработки отправки формы для добавления/редактирования новости
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const title = document.getElementById('news-title').value;
+            const content = document.getElementById('news-content').value;
+            const image = document.getElementById('news-image').files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const imageDataUrl = reader.result;
+                const newsItem = {
+                    title,
+                    content,
+                    image: imageDataUrl
+                };
+
+                const newsIndex = document.getElementById('news-index').value;
+                if (newsIndex !== '') {
+                    // Если есть индекс, значит это редактирование
+                    newsData[newsIndex] = newsItem; // Заменяем текущую новость
+                } else {
+                    // Иначе это добавление новости
+                    newsData.push(newsItem);
+                }
+
+                // Сохраняем обновленные данные в localStorage
+                saveNewsToStorage();
+
+                showSlides();
+                hideForm();
+            };
+
+            if (image) {
+                reader.readAsDataURL(image);
+            } else {
+                alert('Выберите изображение');
+            }
+        }
+
+        // Функция отображения формы редактирования новости
+        function showEditForm(index) {
+            const newsItem = newsData[index];
+            document.getElementById('form-title').textContent = 'Редактировать новость';
+            document.getElementById('news-index').value = index; // Устанавливаем индекс новости
+            document.getElementById('news-title').value = newsItem.title;
+            document.getElementById('news-content').value = newsItem.content;
+            newsFormContainer.style.display = 'block';
+        }
+
+        // Функция удаления новости
+        function deleteNews(index) {
+            newsData.splice(index, 1);
+
+            // Сохраняем обновленные данные в localStorage
+            saveNewsToStorage();
+
+            showSlides();
+        }
+
+        // Функция сохранения новостей в localStorage
+        function saveNewsToStorage() {
+            localStorage.setItem('newsData', JSON.stringify(newsData));
+        }
+
+        // Функция загрузки новостей из localStorage
+        function loadNewsFromStorage() {
+            const storedNews = localStorage.getItem('newsData');
+            if (storedNews) {
+                newsData = JSON.parse(storedNews);
+                showSlides();
+            }
+        }
+
+        // Проверяем статус входа в систему при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+
+
+
+    </script>
+</body>
+</html>
